@@ -144,6 +144,7 @@ void ASIC_result_task(void *pvParameters)
         }
 
         //log the ASIC response
+        if(nonce_diff>100000)
         ESP_LOGI(TAG, "ID: %s, ASIC nr: %d, Core: %d/%d, ver: %08" PRIX32 " Nonce %08" PRIX32 " diff %.1f of %g.", active_job->jobid, asic_result->asic_nr, asic_result->core_id, asic_result->small_core_id, asic_result->rolled_version, asic_result->nonce, nonce_diff, active_job->pool_diff);
 
         SYSTEM_notify_found_nonce(GLOBAL_STATE, nonce_diff, active_job->target);
